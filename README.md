@@ -1,21 +1,21 @@
-﻿# video-sr-server_CRRC
+﻿# 📹✨video-sr-server_CRRC
 
-## 项目简介
+## 🔍项目简介
 本模块是"轨道交通车辆智能运维边云协同系统"中"视频传输优化平台模块"的核心组件，基于深度学习模型 BasicVSR++ 实现低清视频的超分辨率增强。主要解决车载视频压缩传输后分辨率下降、细节缺失的问题，通过 ×4 放大与质量重建，提升视频 PSNR 指标和主观视觉效果，支撑后续人眼回顾和事件分析等场景。
 
 
-## 技术栈
+## 🛠️技术栈
 - 核心模型：BasicVSR++（基于 MMagic 框架）
 - 部署环境：Docker + NVIDIA Orin（ARM64 架构）
 - 接口类型：RESTful API
 - 支持格式：MP4 视频文件
 
-## 快速部署
-### 环境依赖
+## 🚀快速部署
+### ⚙️环境依赖
 - 硬件：NVIDIA Orin 平台（支持 GPU 加速）
 - 软件：Docker >= 20.10，NVIDIA Container Toolkit
 
-### 部署步骤
+### 👣部署步骤
 1. **部署 Docker 镜像**（镜像大小约 7.9GB）
    基础镜像 [dustynv/torchvision:0.21.0-r36.4.0-cu128](https://hub.docker.com/layers/dustynv/torchvision/0.21.0-r36.4.0-cu128)
    ```bash
@@ -47,15 +47,15 @@
    docker logs <容器名>
    ```
 
-## 使用指南
-### 两种使用方式
+## 📋使用指南
+### 💻前端(不在本项目中实现)及接口
 | 使用方式 | 适用场景 | 操作入口 |
 |----------|----------|----------|
 | Web 界面 | 快速测试、手动操作、画质对比 | 浏览器访问 `http://<服务器地址>:6001` |
 | API 接口 | 系统集成、批量处理、自动化流程 | 调用下方 RESTful API |
 
 
-### API 接口使用
+### 📤API 接口使用
 #### 接口说明（v3 版本，推荐使用）
 > 注：所有接口返回结果需通过「查询任务进度接口」获取最终结果
 
@@ -138,30 +138,28 @@
 - 方法: GET
 - 描述: 通过查询接口返回的 file_url 直接下载视频
 
-### 测试命令
+### 🧪测试命令
 #### 1. 测试 API 接口
 ```bash
-# 测试单个视频超分
+# 测试单个视频超分 test_video_sr_api_all.py (all指的是返回状态码200/400/500等情况)
 sudo docker exec -i <容器名> python3 < test_video_sr_api_all.py
 
-# 测试对比视频超分（含 PSNR 计算）
+# 测试对比视频超分 test_video_sr_api_display.py (display表示针对API2)
 sudo docker exec -i <容器名> python3 < test_video_sr_api_display.py
 ```
 
 #### 2. 直接运行超分脚本（容器内）
 ```bash
-# 进入容器
-sudo docker exec -it <容器名> bash
-
-# 运行超分脚本
-python3 video_sr_fast.py --input ./data/input/test9.mp4 --output ./data/output/output9_fast.mp4 --max_seq_len 10
+# 运行超分脚本(视频文件路径 应预先挂载/copy到容器里)
+sudo docker exec -i <容器名> python3 video_sr.py --input <输入视频文件路径> --output <输出视频文件路径> --max_seq_len <参数值，默认10>
 ```
 
 
-## 版本说明
+## 📌版本说明
 | 版本 | 主要变更 |
 |------|----------|
 | v3（最新） | 新增任务进度查询接口，优化异步处理流程 |
 | v2 | 基础 API 功能，支持单视频和对比视频处理 |
 ```
+
 
