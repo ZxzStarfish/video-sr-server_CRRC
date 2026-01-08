@@ -1,7 +1,7 @@
 ﻿# video-sr-server_CRRC
 
 ## 项目简介
-本模块是"轨道交通车辆智能运维边云协同系统"中"视频传输优化平台模块"的核心组件，基于深度学习模型 BasicVSR++ 实现低清视频的超分辨率增强。主要解决车载视频压缩传输后分辨率下降、细节缺失的问题，通过 ×4 放大与质量重建，提升视频 PSNR 指标和主观视觉效果，支撑后续故障检测、事件分析和模型训练等场景。
+本模块是"轨道交通车辆智能运维边云协同系统"中"视频传输优化平台模块"的核心组件，基于深度学习模型 BasicVSR++ 实现低清视频的超分辨率增强。主要解决车载视频压缩传输后分辨率下降、细节缺失的问题，通过 ×4 放大与质量重建，提升视频 PSNR 指标和主观视觉效果，支撑后续人眼回顾和事件分析等场景。
 
 
 ## 技术栈
@@ -17,7 +17,7 @@
 
 ### 部署步骤
 1. **部署 Docker 镜像**（镜像大小约 7.9GB）
-   基础镜像 dustynv/torchvision:0.21.0-r36.4.0-cu128(https://hub.docker.com/layers/dustynv/torchvision/0.21.0-r36.4.0-cu128)
+   基础镜像 [dustynv/torchvision:0.21.0-r36.4.0-cu128](https://hub.docker.com/layers/dustynv/torchvision/0.21.0-r36.4.0-cu128)
    ```bash
    # 从压缩包加载镜像到本地
    docker load -i video-sr-server:latest.tar.gz
@@ -164,3 +164,4 @@ python3 video_sr_fast.py --input ./data/input/test9.mp4 --output ./data/output/o
 | v3（最新） | 新增任务进度查询接口，优化异步处理流程 |
 | v2 | 基础 API 功能，支持单视频和对比视频处理 |
 ```
+
